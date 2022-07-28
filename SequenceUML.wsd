@@ -1,0 +1,41 @@
+@@startuml test
+
+actor user
+participant HW4_Anodjo
+participant Store
+participant Register
+participant Sale
+participant ItemId
+participant ProductCatalog
+participant ProductSpecification
+participant SalesLineItem
+
+HW4_Anodjo -> user: promptSelectFile(...)
+user -> HW4_Anodjo: "items.txt"
+HW4_Anodjo -> Store: store = new Store("items.txt")
+Store -> ProductCatalog: catalog = new ProductCatalog("items.txt") 
+HW4_Anodjo -> Store: store.createShoppingSession()
+Store -> Register: register = new Register(catalog)
+Store -> user: register.promptStartShopping(...)
+user -> Store: "Y"
+Store -> Register: startSale()
+Register -> Sale: curSale = new Sale()
+Register -> user: promptSelectProduct(...)
+user -> Register: "A002"
+Register -> ItemId: productId = new ItemId("A002")
+Register -> ProductCatalog: productInfo = catalog.getCopy(productId)
+Register -> Sale: curSale.makeLineItem(productInfo)
+Sale -> SalesLineItem: new SaleLineItem(productInfo)
+Sale -> Sale: shoppingCart.put(productId, productInfo)
+Register -> user: promptQuantity(userProduct)
+user -> Register: "2"
+Store -> Register: makePayment()
+Register -> Sale: taxedTotal = curSale.getTotalWithTax()
+Register -> user: promptValidTransaction(taxedTotal)
+user -> Register: "5"
+Store -> Register: register.endSale()
+Register -> Sale: curSale.becomeComplete()
+Store -> user: register.promptStartShopping(...)
+user -> Store: "N"
+
+@@enduml

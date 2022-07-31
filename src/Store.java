@@ -27,7 +27,7 @@ public class Store {
 	 * This function starts the shopping session allowing users to exprience the
 	 * continous shopping process.
 	 * 
-	 * @param input   - The users input <code>Scanner</code>
+	 * @param input - The users input <code>Scanner</code>
 	 */
 	public void createShoppingSession(Scanner input) {
 		// Greet the user.
@@ -58,10 +58,9 @@ public class Store {
 	 */
 	private void promptSelectFile(Scanner input) {
 
-		System.out.print("Input File: ");
-
 		// Try to open user file.
 		while (catalog == null) {
+			System.out.print("Input File: ");
 
 			// Store user input
 			String userInput = input.nextLine();
@@ -71,10 +70,10 @@ public class Store {
 				catalog = new ProductCatalog("../input/" + userInput);
 			} catch (java.io.FileNotFoundException e) {
 				// Catches if the user submits a file that does not exist.
-				System.out.printf("!!! File at %s is not found try again: ", userInput);
+				System.out.printf("!!! File %s is not found\n", userInput);
 			} catch (IllegalArgumentException e) {
 				// Catches if the user submits a file that is not formatted correctly.
-				System.out.printf("!!! File at %s is not valid try again: ", userInput);
+				System.out.printf("!!! File %s is not valid\n", userInput);
 			}
 
 		}
@@ -116,6 +115,10 @@ public class Store {
 
 		try {
 			price = input.nextFloat();
+			if (price <= 0) {
+				System.out.println("!!! Invalid price");
+				return;
+			}
 
 		} catch (InputMismatchException e) {
 			// Catches if the user inputs a invalid price.
@@ -191,7 +194,7 @@ public class Store {
 		// Catches if the item exists.
 		try {
 			catalog.get(id);
-		} catch (IllegalArgumentException e) {
+		} catch (NullPointerException e) {
 			System.out.println("!!! Item at code does not exist");
 			return;
 		}
@@ -205,7 +208,11 @@ public class Store {
 		System.out.print("item price: ");
 		try {
 			price = input.nextFloat();
-		} catch (Exception e) {
+			if (price <= 0) {
+				System.out.println("!!! Invalid price");
+				return;
+			}
+		} catch (InputMismatchException e) {
 			System.out.println("!!! Invalid price");
 			return;
 		} finally {

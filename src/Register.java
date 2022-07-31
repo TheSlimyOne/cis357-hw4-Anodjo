@@ -269,7 +269,7 @@ public class Register {
 
             } catch (InputMismatchException e) {
                 // catch if the user's input is invalid or not a double
-                System.out.println("!!! Invalid input\n");
+                System.out.println("!!! Invalid input Enter again.");
                 continue session;
 
             } finally {

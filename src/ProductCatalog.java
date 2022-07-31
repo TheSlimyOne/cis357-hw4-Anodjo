@@ -106,7 +106,7 @@ public class ProductCatalog {
      * @return a <code>ProductSpecification</code>
      * @throws NullPointerException if the code is not in the catalog
      */
-    public ProductSpecification get(ItemId id) throws NullPointerException {
+    public ProductSpecification get(ItemId id) {
         if (!contains(id))
             throw new NullPointerException("Code does not exist");
 
@@ -122,7 +122,7 @@ public class ProductCatalog {
      * @return a <code>ProductSpecification</code>
      * @throws NullPointerException if the code is not in the catalog
      */
-    public ProductSpecification getCopy(ItemId id) throws NullPointerException {
+    public ProductSpecification getCopy(ItemId id) {
         if (!contains(id))
             throw new NullPointerException("Code does not exist");
 

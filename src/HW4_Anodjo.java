@@ -1,7 +1,7 @@
 /*
  * Homework 4: Sales Register Program part 4
  * Course: CIS357
- * Due date: 7/26/2022
+ * Due date: 8/2/2022
  * Name: Jordan Anodjo
  * GitHub: https://github.com/TheSlimyOne/cis357-hw4-Anodjo.git
  * Instructor: Il-Hyung Cho

@@ -29,13 +29,13 @@ public class Sale {
      * Member variable -
      * isComplete repsents when the sale is over or not <code>Sale<code>.
      */
-    private Boolean isComplete;
+    private boolean isComplete;
 
     /**
      * Member variable -
      * isBuying represents if the <code>Sale<code> is still purchasing products.
      */
-    private Boolean isBuying;
+    private boolean isBuying;
 
     /**
      * Memeber variable -

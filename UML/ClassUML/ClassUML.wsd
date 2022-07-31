@@ -1,0 +1,139 @@
+@@startuml class
+
+skinparam style strictuml
+skinparam DefaultFontName Arial
+skinparam DefaultFontSize 16
+skinparam DefaultFontStyle bold
+skinparam ArrowThickness 2.2
+skinparam ArrowColor #gray
+hide empty members
+
+class "HW4_Anodjo" as HW4_Anodjo {
+    + main() 
+}
+
+class "ItemId" as ItemId {
+    - format : String
+    - id : String
+    - hashCode : int
+    
+    + ItemId(code : String)
+    + ItemId(code : ItemId)
+    + getId() : String
+    + getLeadChar() : char
+    + toString() : String
+    + equals(o : Object) : boolean
+    - convertCodetoHash() : int
+    + hashCode() : int
+}
+
+class "ProductCatalog" as ProductCatalog {
+    - catalog : HashMap<ItemId, ProductSpecification> 
+    - length : int
+    - file : File
+    
+    - ProductCatalog()
+    + ProductCatalog(path : String)
+    + get(id : ItemdId) : ProductSpecification
+    + getCopy(id : ItemId) : ProductSpecification
+    + getLength() : int
+    + contains() : boolean
+    + toString() : String
+    + add(item : ProductSpecification)
+    + remove(id : ItemId)
+    + replace(id : ItemId, item : ProductSpecification)
+    + updateFile()
+}
+
+class "ProductSpecification" as ProductSpecification {
+    - id : ItemId
+    - name : String
+    - price : float
+    - tax : double
+
+    + ProductSpecification(id : ItemId, name: String, price : float)
+    + ProductSpecification(product : ProductSpecification)
+    + getId() : ItemdId
+    + getName() : String
+    + getPrice() : float
+    + getTax() : double
+    + calcTax() : double
+    + toString() : String
+}
+
+class "Register" as Register {
+    - catalog : ProductCatalog
+    - curSale : Sale
+    - grandTotal : double
+    
+    + Register(catalog : ProductCatalog)
+    + getGrandTotal() : double
+    + startSale()
+    + selectProduct(input : Scanner)
+    - promptSelectProduct(input : Scanner) : SalesLineItem
+    + makePayment(input : Scanner)
+    + endSale() : Sale
+    - promptQuantity(userProduct : SalesLineItem, input : Scanner)
+    - promptValidTransaction(total : double, input : Scanner)
+    - promptStartShopping(input : Scanner) : boolean
+}
+
+class "Sale" as Sale {
+    - date : Date
+    - time : Time
+    - isComplete : boolean
+    - isBuying : boolean
+    - shoppingCart : HashMap<ItemId, SalesLineItem>
+
+    + Sale()
+    + isComplete() : boolean
+    + isBuying() : boolean
+    + getDate() : Date
+    + getTime() : Time
+    + contains(id : ItemId) : boolean
+    + getTotal() : double
+    + getTotalWithTax() : double
+    + get(id : ItemId) : SalesLineItem
+    + becomeComplete()
+    + startBuying()
+    + endBuying()
+    + makeLineItem(productInfo : ProductSpecification)
+    + makePayment(payment : double) : double
+    + toString() : String
+}
+
+class "SalesLineItem" as SalesLineItem {
+    - quantity : int
+    - identity : ProductSpecification
+    
+    + SalesLineItem (product : ProductSpecification)
+    + addQuantity(quantity : int)
+    + getSubtotal() : double
+    + getSubtotalWithTax()
+    + getName() : int
+    + getQuantity() : int
+    + getPrice() : double
+    + toString() : String
+}
+
+class "Store" as Store {
+    + catalog : ProductCatalog
+    + Store(name : String, address : String, input : Scanner)
+    + createShoppingSession(input : Scanner)
+    + promptSelectFile(input : Scanner)
+    + promptAddItem(input : Scanner)
+    + promptDeleteItem(input : Scanner)
+    + promptModifyItem(input : Scanner)
+    + promptUpdateStock(input : Scanner)
+}
+
+ItemId "1" *--* "1" ProductSpecification : Guarantees Unique Id
+ProductCatalog "1" *-- "*" ProductSpecification : Stores
+Register "1" *--> "*" Sale : Starts Sale
+Store "1" *--> "*" Register : Creates Register
+HW4_Anodjo "Drives" --> Store
+Store "1" *--> "*" ProductCatalog: Creates Catalog
+SalesLineItem "1" --> "1" ProductSpecification : Copies
+Sale "1" *--> "*" SalesLineItem : Creates and Contains
+
+@@enduml

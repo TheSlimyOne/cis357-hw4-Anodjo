@@ -1,4 +1,4 @@
-@@startuml test
+@@startuml sequence
 
 actor user
 participant HW4_Anodjo

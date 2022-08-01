@@ -38,15 +38,20 @@
  *      ProductSpecification                                        Y
  */
 
+import java.util.Scanner;
+
 /**
  * Driver Class.
  * 
  * @author Jordan Anodjo
  */
-import java.util.Scanner;
-
 public class HW4_Anodjo {
-    // Start the shopping session.
+    /**
+     * Start the shopping session.
+     * Main dirver class.
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         final Store store = new Store("MartMart", "123 Street", input);

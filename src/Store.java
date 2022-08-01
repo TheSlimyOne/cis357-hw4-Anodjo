@@ -146,24 +146,25 @@ public class Store {
 	private void promptDeleteItem(Scanner input) {
 		ItemId id;
 
-		// Catches if the user inputs a invalid field.
+		System.out.print("item code: ");
+
 		try {
-			System.out.print("item code: ");
 			id = new ItemId(input.nextLine());
-		} catch (RuntimeException e) {
+			catalog.get(id);
+			catalog.remove(id);
+
+		} catch (IllegalArgumentException e) {
+			// Catches if the user inputs a invalid field.
 			System.out.println("!!! Invalid code format");
 			return;
-		}
 
-		// Catches if the item exists or not.
-		try {
-			catalog.get(id);
-		} catch (Exception e) {
+		} catch (NullPointerException e) {
+			// Catches if the item exists or not.
 			System.out.println("!!! Item at code does not exist");
 			return;
 		}
 
-		catalog.remove(id);
+		
 		System.out.println("Item delete successful!");
 
 	}

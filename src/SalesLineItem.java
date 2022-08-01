@@ -99,12 +99,12 @@ public class SalesLineItem {
         return identity.getPrice();
     }
 
-    @Override
     /**
      * {@inheritDoc}
      * Member Function -
      * Prints <code>Item</code> in the format of: amount, name, and total price.
      */
+    @Override
     public String toString() {
         return String.format("%5d %-13s $ %6.2f", quantity, identity.getName(), getSubtotal());
     }

@@ -74,7 +74,6 @@ public class ItemId {
         return id.charAt(0);
     }
     
-    @Override
     /**
      * {@inheritDoc}
      * Member Function -
@@ -82,12 +81,11 @@ public class ItemId {
      * 
      * @return the string version of <code>ItemId</code>
      */
-    
+    @Override
     public String toString() {
         return getId();
     }
 
-    @Override
     /**
      * {@inheritDoc}
      * Member Function -
@@ -96,7 +94,7 @@ public class ItemId {
      * @param o - <code>ItemId</code> to be compared with
      * @return if the ItemId are equal
      */
-    
+    @Override
     public boolean equals(Object o) {
         // if this object is the same thing return true
         if (o == this)
@@ -129,10 +127,10 @@ public class ItemId {
         return Objects.hashCode(hash);
     }
 
-    @Override
     /**
      * This function retrieves the hash code of <code>ItemId</code>
      */
+    @Override
     public int hashCode() {
         return this.hashCode;
     }

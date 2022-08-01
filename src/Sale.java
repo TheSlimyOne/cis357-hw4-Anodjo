@@ -209,12 +209,12 @@ public class Sale {
         return payment - getTotalWithTax();
     }
 
-    @Override
     /**
      * {@inheritDoc}
      * Member Function -
      * Turns <code>Sale</code> into a <code>String</code>.
      */
+    @Override
     public String toString() {
 
         ArrayList<SalesLineItem> arrayList = new ArrayList<>();

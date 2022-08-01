@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"HW4_Anodjo"},{"p":"<Unnamed>","l":"ItemId"},{"p":"<Unnamed>","l":"ProductCatalog"},{"p":"<Unnamed>","l":"ProductSpecification"},{"p":"<Unnamed>","l":"Register"},{"p":"<Unnamed>","l":"Sale"},{"p":"<Unnamed>","l":"SalesLineItem"},{"p":"<Unnamed>","l":"Store"}]
